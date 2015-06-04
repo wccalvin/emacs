@@ -1,7 +1,53 @@
-;; =============================
-;; Emacs config file for windows
-;; =============================
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ==================
+;; Basic emacs config
+;; ==================
+
+;; Set ido mode
+(require 'ido)
+(ido-mode t)
+
+;; Fill Column Indicator
+(add-to-list 'load-path "~/.emacs.d/fill-column-indicator-1.83")
+(require 'fill-column-indicator)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode t)
+
+(provide 'fill-column-indicator-settings)
+
+;; Set auto-complete
+ 
+
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ================
+;; Emacs for Python
+;; ================
+
+; python-mode
+(setq py-install-directory "~/.emacs.d/python-mode--6.2.0")
+(add-to-list 'load-path py-install-directory)
+(require 'python-mode)
+
+; use IPython
+(setq-default py-shell-name "ipython")
+(setq-default py-which-bufname "IPython")
+; use the wx backend, for both mayavi and matplotlib
+(setq py-python-command-args
+  '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
+(setq py-force-py-shell-name-p t)
+
+; switch to the interpreter after executing code
+(setq py-shell-switch-buffers-on-execute-p t)
+(setq py-switch-buffers-on-execute-p t)
+; don't split windows
+(setq py-split-windows-on-execute-p nil)
+; try to automagically figure out indentation
+(setq py-smart-indentation t)
+
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;; ==============
 ;; Emacs for Perl
 ;; ==============
@@ -29,17 +75,15 @@
  )
 ;; (setq cperl-auto-newline t) ;; add newlines when you hit semi-colon
 
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;; ============
+;; Color Scheme
+;; ============
 
+;;; desert-theme.el --- desert theme
 
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;; ================
-;; Theme: jb-simple
-;; ================
-
-;;; jb-simple-theme.el --- jb-simple theme
-
-;; Copyright (C) 2000 by jeff
+;; Copyright (C) Sergei Lebedev
 ;; Copyright (C) 2013 by Syohei YOSHIDA
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
@@ -61,302 +105,157 @@
 
 ;;; Commentary:
 ;;
-;; Port of jb-simple theme from `color-themes'
+;; Port of desert theme from `color-themes'
 
 ;;; Code:
 
-(deftheme jb-simple
-  "jb-simple theme")
+(deftheme desert
+  "desert theme")
 
 (custom-theme-set-faces
- 'jb-simple
+ 'desert
 
- '(default ((t (:background "white" :foreground "black"))))
- '(mouse ((t (:foregound "black"))))
- '(cursor ((t (:foregound "black"))))
- '(border ((t (:foregound "black"))))
+ '(default ((t (:background "gray20" :foreground "ghost white"))))
 
- '(gnus-mouse-face ((t (:background "darkseagreen2"))))
- '(list-matching-lines-face ((t (:bold t))))
- '(rmail-highlight-face ((t (:bold t :foreground "brown4"))))
- '(view-highlight-face ((t (:background "darkseagreen2"))))
+ '(ac-candidate-face ((t (:background "gray15" :foreground "ghost white"))))
+ '(ac-completion-face ((t (:background "olivedrab" :foreground "khaki"))))
+ '(ac-selection-face ((t (:foreground "khaki" :background "olivedrab"))))
+ '(bold ((t (:bold t :weight bold))))
+ '(bold-italic ((t (:italic t :bold t :slant italic :weight bold))))
+ '(border ((t (nil))))
+ '(buffer-menu-buffer ((t (:bold t :foreground "khaki" :weight bold))))
+ '(button ((t (:bold t :weight bold :underline nil :foreground "MediumPurple3" :background "gray20"))))
 
- '(blank-space-face ((t (nil))))
- '(blank-tab-face ((t (nil))))
- '(blue ((t (nil))))
- '(bold ((t (:bold t))))
- '(bold-italic ((t (:italic t :bold t))))
- '(border-glyph ((t (nil))))
- '(calendar-today-face ((t (:underline t))))
- '(cperl-array-face ((t (:bold t :background "lightyellow2" :foreground "Blue"))))
- '(cperl-hash-face ((t (:italic t :bold t :background "lightyellow2" :foreground "Red"))))
- '(cperl-nonoverridable-face ((t (:foreground "chartreuse3"))))
- '(custom-button-face ((t (:bold t))))
- '(custom-changed-face ((t (:background "blue" :foreground "white"))))
- '(custom-documentation-face ((t (nil))))
- '(custom-face-tag-face ((t (:underline t))))
- '(custom-group-tag-face ((t (:underline t :bold t :foreground "blue"))))
- '(custom-group-tag-face-1 ((t (:underline t :foreground "red"))))
- '(custom-invalid-face ((t (:background "red" :foreground "yellow"))))
- '(custom-modified-face ((t (:background "blue" :foreground "white"))))
- '(custom-rogue-face ((t (:background "black" :foreground "pink"))))
- '(custom-saved-face ((t (:underline t))))
- '(custom-set-face ((t (:background "white" :foreground "blue"))))
- '(custom-state-face ((t (:foreground "dark green"))))
- '(custom-variable-button-face ((t (:underline t :bold t))))
- '(custom-variable-tag-face ((t (:underline t :bold t :foreground "blue"))))
- '(diary-face ((t (:bold t :foreground "red"))))
- '(ediff-current-diff-face-A ((t (:background "pale green" :foreground "firebrick"))))
- '(ediff-current-diff-face-Ancestor ((t (:background "VioletRed" :foreground "Black"))))
- '(ediff-current-diff-face-B ((t (:background "Yellow" :foreground "DarkOrchid"))))
- '(ediff-current-diff-face-C ((t (:background "Pink" :foreground "Navy"))))
- '(ediff-even-diff-face-A ((t (:background "light grey" :foreground "Black"))))
- '(ediff-even-diff-face-Ancestor ((t (:background "Grey" :foreground "White"))))
- '(ediff-even-diff-face-B ((t (:background "Grey" :foreground "White"))))
- '(ediff-even-diff-face-C ((t (:background "light grey" :foreground "Black"))))
- '(ediff-fine-diff-face-A ((t (:background "sky blue" :foreground "Navy"))))
- '(ediff-fine-diff-face-Ancestor ((t (:background "Green" :foreground "Black"))))
- '(ediff-fine-diff-face-B ((t (:background "cyan" :foreground "Black"))))
- '(ediff-fine-diff-face-C ((t (:background "Turquoise" :foreground "Black"))))
- '(ediff-odd-diff-face-A ((t (:background "Grey" :foreground "White"))))
- '(ediff-odd-diff-face-Ancestor ((t (:background "light grey" :foreground "Black"))))
- '(ediff-odd-diff-face-B ((t (:background "light grey" :foreground "Black"))))
- '(ediff-odd-diff-face-C ((t (:background "Grey" :foreground "White"))))
- '(erc-action-face ((t (:bold t))))
- '(erc-bold-face ((t (:bold t))))
- '(erc-default-face ((t (nil))))
- '(erc-direct-msg-face ((t (nil))))
- '(erc-error-face ((t (:bold t))))
- '(erc-input-face ((t (nil))))
- '(erc-inverse-face ((t (nil))))
- '(erc-notice-face ((t (nil))))
- '(erc-pal-face ((t (nil))))
- '(erc-prompt-face ((t (nil))))
- '(erc-underline-face ((t (nil))))
- '(eshell-ls-archive-face ((t (:bold t :foreground "Orchid"))))
- '(eshell-ls-backup-face ((t (:foreground "OrangeRed"))))
- '(eshell-ls-clutter-face ((t (:bold t :foreground "OrangeRed"))))
- '(eshell-ls-directory-face ((t (:bold t :foreground "Blue"))))
- '(eshell-ls-executable-face ((t (:bold t :foreground "ForestGreen"))))
- '(eshell-ls-missing-face ((t (:bold t :foreground "Red"))))
- '(eshell-ls-picture-face ((t (nil))))
- '(eshell-ls-product-face ((t (:foreground "OrangeRed"))))
- '(eshell-ls-readonly-face ((t (:foreground "Brown"))))
- '(eshell-ls-special-face ((t (:bold t :foreground "Magenta"))))
- '(eshell-ls-symlink-face ((t (:bold t :foreground "DarkCyan"))))
- '(eshell-ls-unreadable-face ((t (:foreground "Grey30"))))
- '(eshell-prompt-face ((t (:bold t :foreground "Red"))))
- '(eshell-test-failed-face ((t (:bold t :foreground "OrangeRed"))))
- '(eshell-test-ok-face ((t (:bold t :foreground "Green"))))
- '(excerpt ((t (:italic t))))
- '(ff-paths-non-existant-file-face ((t (:bold t :foreground "NavyBlue"))))
- '(fixed ((t (:bold t))))
- '(flyspell-duplicate-face ((t (:underline t :bold t :foreground "Gold3"))))
- '(flyspell-incorrect-face ((t (:underline t :bold t :foreground "OrangeRed"))))
- '(font-latex-bold-face ((t (nil))))
- '(font-latex-italic-face ((t (nil))))
- '(font-latex-math-face ((t (nil))))
- '(font-latex-sedate-face ((t (nil))))
- '(font-latex-string-face ((t (nil))))
- '(font-latex-warning-face ((t (nil))))
- '(font-lock-builtin-face ((t (:bold t :foreground "Orchid"))))
- '(font-lock-comment-face ((t (:italic t :bold t :foreground "blue4"))))
- '(font-lock-constant-face ((t (:bold t :foreground "CadetBlue"))))
- '(font-lock-doc-string-face ((t (:italic t :bold t :foreground "blue4"))))
- '(font-lock-exit-face ((t (nil))))
- '(font-lock-function-name-face ((t (:bold t :foreground "brown4"))))
- '(font-lock-keyword-face ((t (:bold t :foreground "black"))))
- '(font-lock-preprocessor-face ((t (:foreground "blue3"))))
- '(font-lock-reference-face ((t (:foreground "red3"))))
- '(font-lock-string-face ((t (:italic t :bold t :foreground "green4"))))
- '(font-lock-type-face ((t (:bold t :foreground "steelblue"))))
- '(font-lock-variable-name-face ((t (:italic t :bold t :foreground "magenta4"))))
- '(font-lock-warning-face ((t (:bold t :foreground "Red"))))
- '(gnus-cite-attribution-face ((t (:italic t :bold t))))
- '(gnus-cite-face-1 ((t (:foreground "MidnightBlue"))))
- '(gnus-cite-face-10 ((t (:foreground "medium purple"))))
- '(gnus-cite-face-11 ((t (:foreground "turquoise"))))
- '(gnus-cite-face-2 ((t (:foreground "firebrick"))))
- '(gnus-cite-face-3 ((t (:foreground "dark green"))))
- '(gnus-cite-face-4 ((t (:foreground "OrangeRed"))))
- '(gnus-cite-face-5 ((t (:foreground "dark khaki"))))
- '(gnus-cite-face-6 ((t (:foreground "dark violet"))))
- '(gnus-cite-face-7 ((t (:foreground "SteelBlue4"))))
- '(gnus-cite-face-8 ((t (:foreground "magenta"))))
- '(gnus-cite-face-9 ((t (:foreground "violet"))))
- '(gnus-emphasis-bold ((t (:bold t))))
- '(gnus-emphasis-bold-italic ((t (:italic t :bold t))))
- '(gnus-emphasis-highlight-words ((t (nil))))
- '(gnus-emphasis-italic ((t (:italic t))))
- '(gnus-emphasis-underline ((t (:underline t))))
- '(gnus-emphasis-underline-bold ((t (:underline t :bold t))))
- '(gnus-emphasis-underline-bold-italic ((t (:underline t :italic t :bold t))))
- '(gnus-emphasis-underline-italic ((t (:underline t :italic t))))
- '(gnus-filterhist-face-1 ((t (nil))))
- '(gnus-group-mail-1-empty-face ((t (:foreground "DeepPink3"))))
- '(gnus-group-mail-1-face ((t (:bold t :foreground "DeepPink3"))))
- '(gnus-group-mail-2-empty-face ((t (:foreground "HotPink3"))))
- '(gnus-group-mail-2-face ((t (:bold t :foreground "HotPink3"))))
- '(gnus-group-mail-3-empty-face ((t (:foreground "magenta4"))))
- '(gnus-group-mail-3-face ((t (:bold t :foreground "magenta4"))))
- '(gnus-group-mail-low-empty-face ((t (:foreground "DeepPink4"))))
- '(gnus-group-mail-low-face ((t (:bold t :foreground "DeepPink4"))))
- '(gnus-group-news-1-empty-face ((t (:foreground "ForestGreen"))))
- '(gnus-group-news-1-face ((t (:bold t :foreground "ForestGreen"))))
- '(gnus-group-news-2-empty-face ((t (:foreground "CadetBlue4"))))
- '(gnus-group-news-2-face ((t (:bold t :foreground "CadetBlue4"))))
- '(gnus-group-news-3-empty-face ((t (nil))))
- '(gnus-group-news-3-face ((t (:bold t))))
- '(gnus-group-news-4-empty-face ((t (nil))))
- '(gnus-group-news-4-face ((t (:bold t))))
- '(gnus-group-news-5-empty-face ((t (nil))))
- '(gnus-group-news-5-face ((t (:bold t))))
- '(gnus-group-news-6-empty-face ((t (nil))))
- '(gnus-group-news-6-face ((t (:bold t))))
- '(gnus-group-news-low-empty-face ((t (:foreground "DarkGreen"))))
- '(gnus-group-news-low-face ((t (:bold t :foreground "DarkGreen"))))
- '(gnus-header-content-face ((t (:italic t :foreground "indianred4"))))
- '(gnus-header-from-face ((t (:bold t :foreground "red3"))))
- '(gnus-header-name-face ((t (:bold t :foreground "maroon"))))
- '(gnus-header-newsgroups-face ((t (:italic t :bold t :foreground "MidnightBlue"))))
- '(gnus-header-subject-face ((t (:bold t :foreground "red4"))))
- '(gnus-signature-face ((t (:italic t))))
- '(gnus-splash ((t (nil))))
- '(gnus-splash-face ((t (:foreground "ForestGreen"))))
- '(gnus-summary-cancelled-face ((t (:background "black" :foreground "yellow"))))
- '(gnus-summary-high-ancient-face ((t (:bold t :foreground "RoyalBlue"))))
- '(gnus-summary-high-read-face ((t (:bold t :foreground "DarkGreen"))))
- '(gnus-summary-high-ticked-face ((t (:bold t :foreground "firebrick"))))
- '(gnus-summary-high-unread-face ((t (:italic t :bold t))))
- '(gnus-summary-low-ancient-face ((t (:italic t :foreground "RoyalBlue"))))
- '(gnus-summary-low-read-face ((t (:italic t :foreground "DarkGreen"))))
- '(gnus-summary-low-ticked-face ((t (:italic t :bold t :foreground "firebrick"))))
- '(gnus-summary-low-unread-face ((t (:italic t))))
- '(gnus-summary-normal-ancient-face ((t (:foreground "RoyalBlue"))))
- '(gnus-summary-normal-read-face ((t (:foreground "DarkGreen"))))
- '(gnus-summary-normal-ticked-face ((t (:bold t :foreground "firebrick"))))
- '(gnus-summary-normal-unread-face ((t (:bold t))))
- '(gnus-summary-selected-face ((t (:underline t))))
- '(green ((t (nil))))
- '(gui-button-face ((t (:background "grey75"))))
- '(gui-element ((t (:background "Gray80"))))
- '(highlight ((t (:background "darkseagreen2"))))
- '(highlight-changes-delete-face ((t (:underline t :foreground "red"))))
- '(highlight-changes-face ((t (:foreground "red"))))
- '(highline-face ((t (:background "paleturquoise"))))
- '(holiday-face ((t (:background "pink"))))
- '(html-helper-italic-face ((t (:italic t))))
- '(info-menu-5 ((t (:underline t))))
- '(info-node ((t (:italic t :bold t))))
- '(info-xref ((t (:bold t))))
- '(isearch ((t (nil))))
- '(italic ((t (:italic t))))
- '(lazy-highlight-face ((t (:bold t :foreground "dark magenta"))))
- '(left-margin ((t (nil))))
- '(linemenu-face ((t (nil))))
- '(list-mode-item-selected ((t (nil))))
- '(makefile-space-face ((t (:background "hotpink"))))
- '(message-cited-text-face ((t (:foreground "red"))))
- '(message-header-cc-face ((t (:bold t :foreground "MidnightBlue"))))
- '(message-header-name-face ((t (:foreground "cornflower blue"))))
- '(message-header-newsgroups-face ((t (:italic t :bold t :foreground "blue4"))))
- '(message-header-other-face ((t (:foreground "steel blue"))))
- '(message-header-subject-face ((t (:bold t :foreground "navy blue"))))
- '(message-header-to-face ((t (:bold t :foreground "MidnightBlue"))))
- '(message-header-xheader-face ((t (:foreground "blue"))))
- '(message-mml-face ((t (:bold t))))
- '(message-separator-face ((t (:foreground "brown"))))
- '(modeline ((t (:background "darkblue" :foreground "yellow"))))
- '(modeline-buffer-id ((t (:background "black" :foreground "white"))))
- '(modeline-mousable ((t (:background "black" :foreground "white"))))
- '(modeline-mousable-minor-mode ((t (:background "black" :foreground "white"))))
- '(nil ((t (nil))))
- '(paren-mismatch-face ((t (:bold t))))
- '(paren-no-match-face ((t (:bold t))))
- '(pointer ((t (nil))))
- '(primary-selection ((t (nil))))
- '(red ((t (nil))))
- '(region ((t (:background "gray"))))
- '(right-margin ((t (nil))))
- '(secondary-selection ((t (:background "paleturquoise"))))
- '(sgml-doctype-face ((t (nil))))
- '(sgml-end-tag-face ((t (nil))))
- '(sgml-entity-face ((t (nil))))
- '(sgml-ignored-face ((t (nil))))
- '(sgml-sgml-face ((t (nil))))
- '(sgml-start-tag-face ((t (nil))))
- '(show-paren-match-face ((t (:background "turquoise"))))
- '(show-paren-mismatch-face ((t (:bold t :background "purple" :foreground "white"))))
- '(speedbar-button-face ((t (:bold t :foreground "green4"))))
- '(speedbar-directory-face ((t (:bold t :foreground "blue4"))))
- '(speedbar-file-face ((t (:bold t :foreground "cyan4"))))
- '(speedbar-highlight-face ((t (:background "green"))))
- '(speedbar-selected-face ((t (:underline t :foreground "red"))))
- '(speedbar-tag-face ((t (:foreground "brown"))))
- '(swbuff-current-buffer-face ((t (:bold t))))
- '(term-black ((t (:foreground "black"))))
- '(term-blackbg ((t (:background "black"))))
- '(term-blue ((t (:foreground "blue"))))
- '(term-bluebg ((t (:background "blue"))))
- '(term-bold ((t (:bold t))))
- '(term-cyan ((t (:foreground "cyan"))))
- '(term-cyanbg ((t (:background "cyan"))))
- '(term-default-bg ((t (nil))))
- '(term-default-bg-inv ((t (nil))))
- '(term-default-fg ((t (nil))))
- '(term-default-fg-inv ((t (nil))))
- '(term-green ((t (:foreground "green"))))
- '(term-greenbg ((t (:background "green"))))
- '(term-invisible ((t (nil))))
- '(term-invisible-inv ((t (nil))))
- '(term-magenta ((t (:foreground "magenta"))))
- '(term-magentabg ((t (:background "magenta"))))
- '(term-red ((t (:foreground "red"))))
- '(term-redbg ((t (:background "red"))))
- '(term-underline ((t (:underline t))))
- '(term-white ((t (:foreground "white"))))
- '(term-whitebg ((t (:background "white"))))
- '(term-yellow ((t (:foreground "yellow"))))
- '(term-yellowbg ((t (:background "yellow"))))
- '(text-cursor ((t (nil))))
- '(toolbar ((t (nil))))
+ '(completions-annotations ((t (:underline t))))
+ '(completions-common-part ((t (:foreground "ghost white" :background "gray20"))))
+ '(completions-first-difference ((t (:bold t :weight bold))))
+
+ '(cursor ((t (:background "khaki"))))
+
+ '(dired-directory ((t (:bold t :weight bold :foreground "PaleGreen3"))))
+ '(dired-flagged ((t (:bold t :weight bold :foreground "Pink"))))
+ '(dired-header ((t (:bold t :weight bold :foreground "PaleGreen3"))))
+ '(dired-ignored ((t (:foreground "grey70"))))
+ '(dired-mark ((t (:foreground "#ffa0a0"))))
+ '(dired-marked ((t (:bold t :weight bold :foreground "DarkOrange"))))
+ '(dired-perm-write ((t (:foreground "LightSkyBlue3"))))
+ '(dired-symlink ((t (:foreground "khaki"))))
+ '(dired-warning ((t (:bold t :weight bold :foreground "goldenrod"))))
+
+ '(elscreen-tab-background-face ((t (:background "gray15"))))
+ '(elscreen-tab-control-face
+   ((t (:bold t :weight bold :foreground "goldenrod" :background "gray15" :underline nil))))
+ '(elscreen-tab-current-screen-face
+   ((t (:bold t :background "gray15" :foreground "goldenrod" :weight bold))))
+ '(elscreen-tab-other-screen-face ((t (:background "gray15" :foreground "gray60"))))
+
+ '(error ((t (:bold t :foreground "Pink" :weight bold))))
+ '(escape-glyph ((t (:foreground "cyan"))))
+ '(file-name-shadow ((t (:foreground "grey70"))))
+
+ '(font-lock-builtin-face ((t (:foreground "MediumPurple3"))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "LightSkyBlue3"))))
+ '(font-lock-comment-face ((t (:foreground "LightSkyBlue3"))))
+ '(font-lock-constant-face ((t (:foreground "#ffa0a0"))))
+ '(font-lock-doc-face ((t (:foreground "IndianRed3"))))
+ '(font-lock-function-name-face ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(font-lock-keyword-face ((t (:foreground "khaki"))))
+ '(font-lock-negation-char-face ((t (nil))))
+ '(font-lock-preprocessor-face ((t (:foreground "MediumPurple3"))))
+ '(font-lock-regexp-grouping-backslash ((t (:bold t :weight bold))))
+ '(font-lock-regexp-grouping-construct ((t (:bold t :weight bold))))
+ '(font-lock-string-face ((t (:foreground "#ffa0a0"))))
+ '(font-lock-type-face ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(font-lock-variable-name-face ((t (:foreground "ghost white"))))
+ '(font-lock-warning-face ((t (:bold t :foreground "goldenrod" :weight bold))))
+
+ '(fringe ((t (:background "gray20"))))
+ '(glyphless-char ((t (:height 0.6))))
+ '(header-line ((t (:background "gray15" :box (:color "gray20" :line-width 2)))))
+ '(help-argument-name ((t (nil))))
+ '(highlight ((t (:background "olivedrab" :foreground "khaki"))))
+ '(ido-first-match ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(ido-only-match ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(ido-subdir ((t (:bold t :weight bold :foreground "khaki"))))
+
+ '(isearch ((t (:background "olivedrab" :foreground "khaki"))))
+ '(isearch-fail ((t (:background "red4"))))
+ '(isearch-lazy-light
+   ((t (:bold t :background "gray20" :foreground "ghost white" :weight bold))))
+
+ '(italic ((t (:underline t))))
+
+ '(jabber-activity-face ((t (:bold t :weight bold :foreground "PaleGreen3"))))
+ '(jabber-activity-personal-face ((t (:bold t :foreground "#ffa0a0" :weight bold))))
+ '(jabber-chat-prompt-foreign ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(jabber-chat-prompt-local ((t (:bold t :foreground "#ffa0a0" :weight bold))))
+ '(jabber-chat-prompt-system ((t (:bold t :foreground "LightSkyBlue3" :weight bold))))
+ '(jabber-rare-time-face ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(jabber-roster-user-away ((t (:foreground "IndianRed3"))))
+ '(jabber-roster-user-chatty ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(jabber-roster-user-dnd ((t (:foreground "LightSkyBlue3"))))
+ '(jabber-roster-user-error ((t (:bold t :weight bold :foreground "goldenrod"))))
+ '(jabber-roster-user-offline ((t (:background "gray20" :foreground "gray40"))))
+ '(jabber-roster-user-online ((t (:bold t :foreground "khaki" :weight bold))))
+ '(jabber-roster-user-xa ((t (:foreground "IndianRed3"))))
+ '(jabber-title-large ((t (:bold t :weight bold :height 1.728))))
+ '(jabber-title-medium ((t (:bold t :weight bold :height 1.44))))
+ '(jabber-title-small ((t (:bold t :weight bold :height 1.2))))
+
+ '(lazy-highlight ((t (:background "paleturquoise4"))))
+ '(link ((t (:bold t :background "gray20" :foreground "MediumPurple3" :underline nil :weight bold))))
+ '(link-visited ((t (:bold t :underline nil :foreground "MediumPurple3" :background "gray20" :weight bold))))
+ '(linum ((t (:background "gray20" :foreground "yellow"))))
+ '(match ((t (:bold t :weight bold))))
+ '(menu ((t (nil))))
+ '(minibuffer-prompt ((t (:bold t :foreground "khaki" :weight bold))))
+
+ '(mode-line
+   ((t (:box (:color "gray20" :line-width 2)
+             :background "gray15" :foreground "gray60"))))
+ '(mode-line-buffer-id
+   ((t (:bold t :background "gray15" :box (:color "gray20" :line-width 2)
+              :foreground "goldenrod" :weight bold))))
+ '(mode-line-emphasis ((t (:bold t :weight bold))))
+ '(mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
+ '(mode-line-inactive
+   ((t (:foreground "gray60" :background "gray15"
+                    :box (:color "gray20" :line-width 2)))))
+
+ '(mouse ((t (:background "khaki"))))
+ '(next-error ((t (:background "olivedrab" :foreground "khaki"))))
+ '(nobreak-space ((t (:foreground "cyan" :underline t))))
+ '(query-replace ((t (:foreground "khaki" :background "olivedrab"))))
+ '(region ((t (:foreground "khaki" :background "olivedrab"))))
+ '(scroll-bar ((t (nil))))
+ '(secondary-selection ((t (:background "SkyBlue4"))))
+ '(shadow ((t (:foreground "grey70"))))
+ '(show-paren-match ((t (:bold t :foreground "PaleGreen3" :weight bold))))
+ '(show-paren-mismatch ((t (:bold t :foreground "goldenrod" :weight bold))))
+ '(success ((t (:bold t :foreground "Green1" :weight bold))))
+ '(tool-bar
+   ((t (:background "grey75" :foreground "black" :box (:line-width 1 :style released-button)))))
+ '(tooltip ((t (:background "lightyellow" :foreground "black"))))
+ '(trailing-whitespace ((t (:bold t :weight bold :foreground "goldenrod"))))
  '(underline ((t (:underline t))))
- '(vc-annotate-face-0046FF ((t (nil))))
- '(vcursor ((t (:underline t :background "cyan" :foreground "blue"))))
- '(vertical-divider ((t (nil))))
- '(vhdl-font-lock-attribute-face ((t (:foreground "Orchid"))))
- '(vhdl-font-lock-directive-face ((t (:foreground "CadetBlue"))))
- '(vhdl-font-lock-enumvalue-face ((t (:foreground "Gold4"))))
- '(vhdl-font-lock-function-face ((t (:foreground "Orchid4"))))
- '(vhdl-font-lock-prompt-face ((t (:bold t :foreground "Red"))))
- '(vhdl-font-lock-reserved-words-face ((t (:bold t :foreground "Orange"))))
- '(vhdl-font-lock-translate-off-face ((t (:background "LightGray"))))
- '(vhdl-speedbar-architecture-face ((t (:foreground "Blue"))))
- '(vhdl-speedbar-architecture-selected-face ((t (:underline t :foreground "Blue"))))
- '(vhdl-speedbar-configuration-face ((t (:foreground "DarkGoldenrod"))))
- '(vhdl-speedbar-configuration-selected-face ((t (:underline t :foreground "DarkGoldenrod"))))
- '(vhdl-speedbar-entity-face ((t (:foreground "ForestGreen"))))
- '(vhdl-speedbar-entity-selected-face ((t (:underline t :foreground "ForestGreen"))))
- '(vhdl-speedbar-instantiation-face ((t (:foreground "Brown"))))
- '(vhdl-speedbar-instantiation-selected-face ((t (:underline t :foreground "Brown"))))
- '(vhdl-speedbar-package-face ((t (:foreground "Grey50"))))
- '(vhdl-speedbar-package-selected-face ((t (:underline t :foreground "Grey50"))))
- '(viper-minibuffer-emacs-face ((t (:background "darkseagreen2" :foreground "Black"))))
- '(viper-minibuffer-insert-face ((t (:background "pink" :foreground "Black"))))
- '(viper-minibuffer-vi-face ((t (:background "grey" :foreground "DarkGreen"))))
- '(viper-replace-overlay-face ((t (:background "darkseagreen2" :foreground "Black"))))
- '(viper-search-face ((t (:background "khaki" :foreground "Black"))))
- '(widget-button-face ((t (:bold t))))
- '(widget-button-pressed-face ((t (:foreground "red"))))
- '(widget-documentation-face ((t (:foreground "dark green"))))
- '(widget-field-face ((t (:background "gray85"))))
- '(widget-inactive-face ((t (:foreground "dim gray"))))
- '(widget-single-line-field-face ((t (:background "gray85"))))
- '(woman-bold-face ((t (:bold t))))
- '(woman-italic-face ((t (nil))))
- '(woman-unknown-face ((t (nil))))
- '(yellow ((t (nil))))
- '(zmacs-region ((t (nil)))))
 
+ '(vertical-border ((t (nil))))
+ '(warning ((t (:bold t :foreground "DarkOrange" :weight bold))))
+ '(widget-button ((t (:bold t :weight bold))))
+ '(widget-button-pressed ((t (:foreground "red1"))))
+ '(widget-documentation ((t (:foreground "lime green"))))
+ '(widget-field ((t (:background "dim gray"))))
+ '(widget-inactive ((t (:foreground "grey70"))))
+ '(widget-single-line-field ((t (:background "dim gray")))) )
 
-;; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;;###autoload
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory load-file-name))))
+
+(provide-theme 'desert)
+
+;;; desert-theme.el ends here
+
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+;;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

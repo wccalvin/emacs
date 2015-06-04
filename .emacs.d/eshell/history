@@ -1,0 +1,7 @@
+ll
+ls
+ls -ltr
+pwd
+python --version
+python
+wget http://cx4a.org/pub/auto-complete/auto-complete-1.2.tar.bz2
