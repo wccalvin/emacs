@@ -1,3 +1,15 @@
+# Important Conventions:
+-----------------------
+
+1. Buffer:
+Most text editors display and save text from and to a file. In emacs all files are buffers, but not all buffers are files!
+
+2. Window and Frame:
+Imagine this, buffer should be viewed in a window, the window should exist in a frame, each frame can have one or more windows!
+Of course, we can create as many frames as we like and split and tile that frame into multiple windows.
+
+
+
 # File Commands:
 ---------------
 C-x C-f: Opens a file, asks for the file name. If it cannot find the file, creates the file
