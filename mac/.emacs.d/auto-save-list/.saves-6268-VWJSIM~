@@ -1,8 +1,0 @@
-t:/qadata/DEVr418/LATEST/input/abatestTemplates/AnalysisExecutionWithRestart.xml
-t:\qadata\DEVr418\LATEST\input\abatestTemplates\#AnalysisExecutionWithRestart.xml#
-t:/qadata/DEVr418/LATEST/input/abatestTemplates/DesignerProductExecution.xml
-t:\qadata\DEVr418\LATEST\input\abatestTemplates\#DesignerProductExecution.xml#
-u:/users/vwj/util/perl/copy_results.pl
-u:\users\vwj\util\perl\#copy_results.pl#
-u:/users/vwj/delta/remove/qa_inp/proc/restricted_std.suite
-u:\users\vwj\delta\remove\qa_inp\proc\#restricted_std.suite#
