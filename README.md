@@ -12,16 +12,16 @@ Of course, we can create as many frames as we like and split and tile that frame
 
 # File Commands:
 ---------------
-C-x C-f: Opens a file, asks for the file name. If it cannot find the file, creates the file
-C-x C-s: Saves the file without a prompt
-C-x s: Saves all files with a prompt
-C-s C-w: Saves the file with a different name. Asks you for the name.
+> C-x C-f: Opens a file, asks for the file name. If it cannot find the file, creates the file
+> C-x C-s: Saves the file without a prompt
+> C-x s: Saves all files with a prompt
+> C-s C-w: Saves the file with a different name. Asks you for the name.
 
 Note:
 Everytime you save a file , Emacs creates another file with the name "filename~". This tilde(~) file is the previous version of the file. It will be in the same dir. Also, Emacs auto-saves everythin you tupe to a file with the name "#filename#". If you quit emacs without saving, you can see this auto-save file.
 
-C-x C-c: Quit Emacs
-M-x recover-file: recovers the auto-saved file.
+> C-x C-c: Quit Emacs
+> M-x recover-file: recovers the auto-saved file.
 
 # Copy/Cut/Paste:
 -----------------
