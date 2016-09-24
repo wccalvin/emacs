@@ -67,11 +67,13 @@ Hit M-x and type anything and hit TAB to auto-complete the commands (or to see t
 ## ~/.emacs file and packages:
 Emacs is very versatile, you can program it, and add new abilities. Let's say that we develop a new language that Emacs does not know about. All we have to do is to write a "package" so that Emacs can color-code it for example.
 
-~/.emacs file (A file called ".emacs" under your home directory) holds all the elisp statements that is run when you start your Emacs.
-~/.emacs.d directory (A directory called ".emacs.d" under your home directory) holds all the packages (files of lisp commands/statements) for Emacs.
+* ~/.emacs file (A file called ".emacs" under your home directory) holds all the elisp statements that is run when you start your Emacs.
 
-You load a package by refering it in a "require" statement. 
+* ~/.emacs.d directory (A directory called ".emacs.d" under your home directory) holds all the packages (files of lisp commands/statements) for Emacs.
+
+* You load a package by refering it in a "require" statement. 
 
 ## Ediff:
-* M-x ediff [for basic comparison]
-Check: http://www.gnu.org/software/emacs/manual/html_mono/ediff.html [for more information]
+* M-x ediff 
+
+Note: Check here[http://www.gnu.org/software/emacs/manual/html_mono/ediff.html] for more information on ediff.
