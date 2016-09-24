@@ -1,5 +1,6 @@
 # Emacs Notes
-## Important Conventions:
+
+## Important Concepts:
 
 * Buffer:
 Most text editors display and save text from and to a file. In emacs all files are buffers, but not all buffers are files!
@@ -8,15 +9,13 @@ Most text editors display and save text from and to a file. In emacs all files a
 Imagine this, buffer should be viewed in a window, the window should exist in a frame, each frame can have one or more windows!
 Of course, we can create as many frames as we like and split and tile that frame into multiple windows.
 
-
-
 ## File Commands:
 * C-x C-f: Opens a file, asks for the file name. If it cannot find the file, creates the file
 * C-x C-s: Saves the file without a prompt
 * C-x s: Saves all files with a prompt
 * C-s C-w: Saves the file with a different name. Asks you for the name.
 
-Note:
+**Note**:
 Everytime you save a file , Emacs creates another file with the name "filename~". This tilde(~) file is the previous version of the file. It will be in the same dir. Also, Emacs auto-saves everythin you tupe to a file with the name "##filename##". If you quit emacs without saving, you can see this auto-save file.
 
 * C-x C-c: Quit Emacs
@@ -61,7 +60,7 @@ Emacs understands elisp. It is a dialect of lisp.
 * M-x pwd: Prints the working directory.
 * M-x indent-region: Indents the region.
 
-Note:
+**Note**:
 Hit M-x and type anything and hit TAB to auto-complete the commands (or to see the available commands)
 
 ## ~/.emacs file and packages:
@@ -76,4 +75,4 @@ Emacs is very versatile, you can program it, and add new abilities. Let's say th
 ## Ediff:
 * M-x ediff 
 
-Note: Check here[http://www.gnu.org/software/emacs/manual/html_mono/ediff.html] for more information on ediff.
+**Note**: Check [here](http://www.gnu.org/software/emacs/manual/html_mono/ediff.html) for more information on ediff.
